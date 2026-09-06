@@ -275,4 +275,164 @@ h2{
     flex-direction:column;
     justify-content:end;
     background:
-        radial-gradient(circle at
+        radial-gradient(circle at50% 100%,#161616,#080808);
+}
+
+@media(max-width:800px){
+    .ticket-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .lineup{
+        grid-template-columns:1fr;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        min-height:600px;
+    }
+
+    section{
+        padding:65px 0;
+    }
+
+    h2{
+        font-size:36px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="container">
+    <div class="logo">NOVYX</div>
+    <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#tickets">Tickets</a>
+        <a href="#lineup">Lineup</a>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="hero-content">
+        <div class="kicker">The First Experience</div>
+        <h1>NOVYX</h1>
+        <div class="event-date">28 NOVEMBER 2026</div>
+        <div class="location">CITY MALL · MOMBASA</div>
+        <a class="button" href="#tickets">GET TICKETS</a>
+        <a class="button dark" href="#about">EXPLORE</a>
+    </div>
+</header>
+
+<div class="ticker">
+    NOVYX · MUSIC · ENERGY · EXPERIENCE · 28 NOVEMBER 2026 · MOMBASA ·
+</div>
+
+<section id="about">
+    <div class="container">
+        <div class="section-header">
+            <div>
+                <div class="eyebrow">01 / ABOUT</div>
+                <h2>The First<br>Experience.</h2>
+            </div>
+            <p class="description">
+                NOVYX is a new experience built around music, energy,
+                culture and unforgettable moments. Join us for the first
+                chapter on 28 November 2026 at City Mall, Mombasa.
+            </p>
+        </div>
+
+        <div class="about-box">
+            <h3>WELCOME TO NOVYX</h3>
+            <p>One night. One experience. One beginning.</p>
+            <a class="button" href="#tickets">SECURE YOUR TICKET</a>
+        </div>
+    </div>
+</section>
+
+<section id="tickets">
+    <div class="container">
+        <div class="section-header">
+            <div>
+                <div class="eyebrow">02 / TICKETS</div>
+                <h2>Choose<br>Your Entry.</h2>
+            </div>
+            <p class="description">
+                Pick the experience that fits you best.
+            </p>
+        </div>
+
+        <div class="ticket-grid">
+            <div class="ticket">
+                <div class="ticket-label">ENTRY 01</div>
+                <h3>EARLY BIRD</h3>
+                <div class="price">KES 500</div>
+                <div class="ticket-note">Limited availability</div>
+            </div>
+
+            <div class="ticket">
+                <div class="ticket-label">ENTRY 02</div>
+                <h3>REGULAR</h3>
+                <div class="price">KES 1,000</div>
+                <div class="ticket-note">General admission</div>
+            </div>
+
+            <div class="ticket">
+                <div class="ticket-label">ENTRY 03</div>
+                <h3>VIP</h3>
+                <div class="price">KES 2,500</div>
+                <div class="ticket-note">Premium experience</div>
+            </div>
+
+            <div class="ticket">
+                <div class="ticket-label">ENTRY 04</div>
+                <h3>VVIP</h3>
+                <div class="price">KES 5,000</div>
+                <div class="ticket-note">Exclusive access</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="lineup">
+    <div class="container">
+        <div class="section-header">
+            <div>
+                <div class="eyebrow">03 / LINEUP</div>
+                <h2>The Sound<br>of NOVYX.</h2>
+            </div>
+            <p class="description">
+                More artists and performers will be announced soon.
+            </p>
+        </div>
+
+        <div class="lineup">
+            <div class="artist">
+                <div class="ticket-label">ARTIST</div>
+                <h3>COMING SOON</h3>
+            </div>
+
+            <div class="artist">
+                <div class="ticket-label">ARTIST</div>
+                <h3>COMING SOON</h3>
+            </div>
+
+            <div class="artist">
+                <div class="ticket-label">ARTIST</div>
+                <h3>COMING SOON</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="ticker">
+    NOVYX — THE FIRST EXPERIENCE · 28 NOVEMBER 2026 · CITY MALL MOMBASA
+</footer>
+
+</body>
+</html>
