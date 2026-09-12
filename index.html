@@ -1,993 +1,1337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>NOVYX — Official Event</title>
-
-  <meta
-    name="description"
-    content="NOVYX — Music. Energy. Culture. The next experience."
-  >
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #07070c;
-      color: white;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button,
-    input {
-      font: inherit;
-    }
-
-    /* NAVBAR */
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      width: 100%;
-      padding: 18px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      background: rgba(7, 7, 12, 0.88);
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid rgba(176, 0, 255, 0.15);
-    }
-
-    .logo {
-      font-size: 25px;
-      font-weight: 900;
-      letter-spacing: 3px;
-    }
-
-    .logo span {
-      color: #b000ff;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 13px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: #b000ff;
-    }
-
-    /* HERO */
-
-    .hero {
-      min-height: 90vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 80px 7%;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 500px;
-      height: 500px;
-      background: #8a00ff;
-      filter: blur(180px);
-      opacity: 0.15;
-      border-radius: 50%;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-    }
-
-    .tag {
-      color: #b000ff;
-      font-size: 13px;
-      font-weight: bold;
-      letter-spacing: 4px;
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      font-size: clamp(65px, 16vw, 150px);
-      line-height: 0.9;
-      letter-spacing: -5px;
-      font-weight: 900;
-      margin-bottom: 25px;
-    }
-
-    .hero p {
-      max-width: 650px;
-      margin: auto;
-      color: #b7b7c3;
-      font-size: 18px;
-    }
-
-    .buttons {
-      margin-top: 35px;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 15px 27px;
-      border-radius: 8px;
-      border: 1px solid #b000ff;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .btn-primary {
-      background: #b000ff;
-      color: white;
-      box-shadow: 0 0 30px rgba(176, 0, 255, 0.25);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: white;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 30px rgba(176, 0, 255, 0.4);
-    }
-
-    /* SECTIONS */
-
-    section {
-      padding: 100px 7%;
-    }
-
-    .section-title {
-      max-width: 800px;
-      margin-bottom: 50px;
-    }
-
-    .section-title h2 {
-      font-size: clamp(40px, 7vw, 75px);
-      line-height: 1;
-      margin-bottom: 20px;
-    }
-
-    .section-title p {
-      color: #a5a5b1;
-      font-size: 17px;
-    }
-
-    /* ABOUT */
-
-    .about {
-      background: #0b0b12;
-    }
-
-    /* TICKETS */
-
-    .tickets {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .ticket {
-      position: relative;
-      padding: 32px;
-      background: #101018;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 18px;
-      transition: 0.35s;
-      overflow: hidden;
-    }
-
-    .ticket::before {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      background: #b000ff;
-      filter: blur(100px);
-      opacity: 0;
-      top: -80px;
-      right: -80px;
-      transition: 0.35s;
-    }
-
-    .ticket:hover {
-      transform: translateY(-8px);
-      border-color: rgba(176, 0, 255, 0.5);
-    }
-
-    .ticket:hover::before {
-      opacity: 0.2;
-    }
-
-    .ticket h3 {
-      position: relative;
-      font-size: 25px;
-      margin-bottom: 10px;
-    }
-
-    .price {
-      position: relative;
-      font-size: 38px;
-      font-weight: 900;
-      margin: 20px 0;
-    }
-
-    .price small {
-      font-size: 14px;
-      color: #999;
-      font-weight: normal;
-    }
-
-    .ticket p {
-      position: relative;
-      color: #999;
-      margin-bottom: 25px;
-    }
-
-    .ticket button {
-      position: relative;
-      width: 100%;
-      border: none;
-      padding: 14px;
-      border-radius: 8px;
-      background: #b000ff;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .ticket button:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 25px rgba(176, 0, 255, 0.35);
-    }
-
-    .featured {
-      border-color: #b000ff;
-    }
-
-    .premium {
-      position: absolute;
-      right: 18px;
-      top: 18px;
-      padding: 5px 9px;
-      font-size: 10px;
-      background: #b000ff;
-      border-radius: 5px;
-      font-weight: bold;
-    }
-
-    /* EXPERIENCE */
-
-    .experience {
-      background: #0b0b12;
-    }
-
-    .experience-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .experience-card {
-      min-height: 200px;
-      padding: 30px;
-      border-radius: 18px;
-      background: #101018;
-      border: 1px solid rgba(255, 255, 255, 0.07);
-    }
-
-    .experience-card h3 {
-      font-size: 25px;
-      margin-bottom: 10px;
-    }
-
-    .experience-card p {
-      color: #888;
-    }
-
-    /* INSTAGRAM */
-
-    .social {
-      text-align: center;
-    }
-
-    .instagram {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 25px;
-      padding: 14px 22px;
-      border: 1px solid rgba(176, 0, 255, 0.5);
-      border-radius: 10px;
-      transition: 0.3s;
-    }
-
-    .instagram:hover {
-      background: #b000ff;
-      transform: translateY(-3px);
-    }
-
-    .instagram-icon {
-      width: 20px;
-      height: 20px;
-      border: 2px solid white;
-      border-radius: 6px;
-      position: relative;
-    }
-
-    .instagram-icon::after {
-      content: "";
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      border: 2px solid white;
-      border-radius: 50%;
-      left: 5px;
-      top: 5px;
-    }
-
-    /* FOOTER */
-
-    footer {
-      padding: 35px 7%;
-      text-align: center;
-      color: #666;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      font-size: 13px;
-    }
-
-    /* MODAL */
-
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 2000;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(8px);
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-
-    .modal-box {
-      width: 100%;
-      max-width: 430px;
-      background: #11111a;
-      border: 1px solid rgba(176,0,255,0.5);
-      border-radius: 18px;
-      padding: 30px;
-      box-shadow: 0 0 60px rgba(176,0,255,0.2);
-    }
-
-    .modal-box h2 {
-      margin-bottom: 8px;
-    }
-
-    .selected-ticket {
-      color: #b000ff;
-      font-weight: bold;
-      margin-bottom: 25px;
-    }
-
-    .modal-box label {
-      display: block;
-      margin-bottom: 8px;
-      color: #aaa;
-      font-size: 14px;
-    }
-
-    .modal-box input {
-      width: 100%;
-      padding: 15px;
-      background: #08080d;
-      color: white;
-      border: 1px solid #33333f;
-      border-radius: 8px;
-      outline: none;
-      margin-bottom: 15px;
-    }
-
-    .modal-box input:focus {
-      border-color: #b000ff;
-    }
-
-    .pay-button {
-      width: 100%;
-      padding: 15px;
-      background: #b000ff;
-      border: none;
-      color: white;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .pay-button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .close-button {
-      width: 100%;
-      padding: 12px;
-      background: transparent;
-      color: #aaa;
-      border: none;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    .message {
-      margin-top: 15px;
-      padding: 12px;
-      border-radius: 8px;
-      display: none;
-      font-size: 14px;
-    }
-
-    .message.show {
-      display: block;
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 800px) {
-
-      nav {
-        padding: 16px 5%;
-      }
-
-      .nav-links {
-        gap: 13px;
-      }
-
-      .nav-links a {
-        font-size: 10px;
-      }
-
-      section {
-        padding: 75px 5%;
-      }
-
-      .tickets {
-        grid-template-columns: 1fr;
-      }
-
-      .experience-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        min-height: 80vh;
-      }
-
-      .hero h1 {
-        letter-spacing: -3px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NOVYX — The Next Experience</title>
+
+<meta name="description" content="NOVYX — Music. Energy. Culture. The next experience.">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#050507;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* BACKGROUND */
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(176,0,255,.15),transparent 25%),
+    radial-gradient(circle at 80% 70%,rgba(110,0,255,.12),transparent 25%);
+  z-index:-2;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.15;
+  background-image:
+    radial-gradient(#fff 1px,transparent 1px);
+  background-size:45px 45px;
+  animation:stars 20s linear infinite;
+  z-index:-1;
+}
+
+@keyframes stars{
+  from{transform:translateY(0)}
+  to{transform:translateY(45px)}
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button,input{
+  font:inherit;
+}
+
+/* NAV */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 7%;
+  background:rgba(5,5,7,.72);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(176,0,255,.18);
+}
+
+.logo{
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:4px;
+}
+
+.logo span{
+  color:#b000ff;
+  text-shadow:0 0 20px #b000ff;
+}
+
+.nav-links{
+  display:flex;
+  gap:30px;
+  list-style:none;
+}
+
+.nav-links a{
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:2px;
+  transition:.3s;
+}
+
+.nav-links a:hover{
+  color:#b000ff;
+  text-shadow:0 0 15px #b000ff;
+}
+
+/* HERO */
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  padding:130px 7% 80px;
+  overflow:hidden;
+}
+
+.hero-glow{
+  position:absolute;
+  width:500px;
+  height:500px;
+  border-radius:50%;
+  background:#8c00ff;
+  filter:blur(180px);
+  opacity:.18;
+  animation:pulse 5s ease-in-out infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1);opacity:.13}
+  50%{transform:scale(1.25);opacity:.25}
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+}
+
+.tag{
+  color:#c000ff;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:5px;
+  margin-bottom:20px;
+}
+
+.hero h1{
+  font-size:clamp(75px,18vw,180px);
+  line-height:.82;
+  letter-spacing:-8px;
+  font-weight:1000;
+  text-shadow:
+    0 0 20px rgba(176,0,255,.35),
+    0 0 70px rgba(176,0,255,.15);
+  animation:heroText 4s ease-in-out infinite;
+}
+
+@keyframes heroText{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.025)}
+}
+
+.hero h1 span{
+  color:#b000ff;
+}
+
+.hero p{
+  max-width:650px;
+  margin:30px auto 0;
+  color:#aaaab6;
+  font-size:18px;
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-top:35px;
+}
+
+.btn{
+  display:inline-block;
+  padding:16px 28px;
+  border-radius:9px;
+  font-weight:bold;
+  font-size:13px;
+  letter-spacing:1px;
+  transition:.3s;
+  cursor:pointer;
+}
+
+.primary{
+  background:#b000ff;
+  box-shadow:0 0 30px rgba(176,0,255,.35);
+}
+
+.primary:hover{
+  transform:translateY(-5px);
+  box-shadow:
+    0 0 20px #b000ff,
+    0 0 60px rgba(176,0,255,.5);
+}
+
+.secondary{
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.03);
+}
+
+.secondary:hover{
+  border-color:#b000ff;
+  color:#b000ff;
+}
+
+/* SCROLL INDICATOR */
+
+.scroll{
+  position:absolute;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  color:#777;
+  font-size:10px;
+  letter-spacing:3px;
+  animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+  0%,100%{transform:translate(-50%,0)}
+  50%{transform:translate(-50%,8px)}
+}
+
+/* SECTIONS */
+
+section{
+  padding:110px 7%;
+}
+
+.section-heading{
+  max-width:800px;
+  margin-bottom:55px;
+}
+
+.section-heading h2{
+  font-size:clamp(42px,7vw,78px);
+  line-height:.95;
+  margin-bottom:20px;
+  letter-spacing:-3px;
+}
+
+.section-heading p{
+  color:#9999a5;
+  font-size:17px;
+}
+
+/* ABOUT */
+
+.about{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(176,0,255,.07),
+      transparent 50%
+    );
+}
+
+.about-box{
+  max-width:950px;
+  padding:45px;
+  border:1px solid rgba(176,0,255,.2);
+  border-radius:24px;
+  background:rgba(15,15,22,.7);
+  box-shadow:0 0 80px rgba(176,0,255,.06);
+}
+
+.about-box p{
+  color:#aaa;
+  font-size:18px;
+  line-height:1.9;
+}
+
+/* TICKETS */
+
+.tickets-section{
+  position:relative;
+}
+
+.tickets{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+}
+
+.ticket{
+  position:relative;
+  padding:35px;
+  min-height:390px;
+  border-radius:22px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.06),
+      rgba(255,255,255,.015)
+    );
+  border:1px solid rgba(255,255,255,.09);
+  overflow:hidden;
+  transition:.4s;
+}
+
+.ticket::before{
+  content:"";
+  position:absolute;
+  width:200px;
+  height:200px;
+  top:-100px;
+  right:-100px;
+  border-radius:50%;
+  background:#b000ff;
+  filter:blur(90px);
+  opacity:0;
+  transition:.4s;
+}
+
+.ticket:hover{
+  transform:translateY(-12px);
+  border-color:rgba(176,0,255,.7);
+  box-shadow:0 20px 70px rgba(176,0,255,.12);
+}
+
+.ticket:hover::before{
+  opacity:.35;
+}
+
+.ticket h3{
+  position:relative;
+  font-size:28px;
+  margin-bottom:15px;
+}
+
+.ticket-label{
+  color:#888;
+  font-size:11px;
+  letter-spacing:2px;
+}
+
+.price{
+  position:relative;
+  font-size:43px;
+  font-weight:900;
+  margin:25px 0;
+}
+
+.price small{
+  font-size:13px;
+  color:#777;
+}
+
+.ticket p{
+  position:relative;
+  color:#92929d;
+  min-height:65px;
+}
+
+.ticket button{
+  position:relative;
+  width:100%;
+  border:none;
+  padding:16px;
+  margin-top:20px;
+  border-radius:9px;
+  color:#fff;
+  background:#b000ff;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.ticket button:hover{
+  transform:scale(1.03);
+  box-shadow:0 0 30px rgba(176,0,255,.45);
+}
+
+.featured{
+  border-color:#b000ff;
+  box-shadow:0 0 60px rgba(176,0,255,.08);
+}
+
+.premium{
+  position:absolute;
+  top:20px;
+  right:20px;
+  padding:6px 10px;
+  border-radius:5px;
+  font-size:9px;
+  letter-spacing:1px;
+  font-weight:bold;
+  background:#b000ff;
+}
+
+/* EXPERIENCE */
+
+.experience{
+  background:#09090e;
+}
+
+.experience-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.experience-card{
+  position:relative;
+  min-height:220px;
+  padding:30px;
+  border-radius:20px;
+  background:#101018;
+  border:1px solid rgba(255,255,255,.07);
+  overflow:hidden;
+  transition:.4s;
+}
+
+.experience-card:hover{
+  transform:translateY(-8px);
+  border-color:#b000ff;
+}
+
+.experience-card .number{
+  color:#b000ff;
+  font-size:12px;
+  letter-spacing:3px;
+  margin-bottom:35px;
+}
+
+.experience-card h3{
+  font-size:27px;
+  margin-bottom:10px;
+}
+
+.experience-card p{
+  color:#777;
+}
+
+/* SOCIAL */
+
+.social{
+  text-align:center;
+}
+
+.social h2{
+  font-size:clamp(40px,7vw,70px);
+  margin-bottom:10px;
+}
+
+.instagram{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  margin-top:25px;
+  padding:16px 25px;
+  border:1px solid rgba(176,0,255,.5);
+  border-radius:10px;
+  background:rgba(176,0,255,.04);
+  transition:.3s;
+}
+
+.instagram:hover{
+  background:#b000ff;
+  box-shadow:0 0 35px rgba(176,0,255,.4);
+  transform:translateY(-5px);
+}
+
+.instagram-icon{
+  width:21px;
+  height:21px;
+  border:2px solid white;
+  border-radius:6px;
+  position:relative;
+}
+
+.instagram-icon::before{
+  content:"";
+  position:absolute;
+  width:7px;
+  height:7px;
+  border:2px solid white;
+  border-radius:50%;
+  top:4px;
+  left:4px;
+}
+
+.instagram-icon::after{
+  content:"";
+  position:absolute;
+  width:3px;
+  height:3px;
+  background:white;
+  border-radius:50%;
+  top:3px;
+  right:3px;
+}
+
+/* FOOTER */
+
+footer{
+  padding:35px 7%;
+  text-align:center;
+  color:#555;
+  font-size:12px;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+
+/* PAYMENT MODAL */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:3000;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(12px);
+}
+
+.modal-box{
+  width:100%;
+  max-width:450px;
+  padding:35px;
+  border-radius:22px;
+  background:#111119;
+  border:1px solid rgba(176,0,255,.7);
+  box-shadow:
+    0 0 80px rgba(176,0,255,.2);
+  animation:modalIn .3s ease;
+}
+
+@keyframes modalIn{
+  from{
+    opacity:0;
+    transform:scale(.9) translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:scale(1) translateY(0);
+  }
+}
+
+.modal-box h2{
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.selected-ticket{
+  color:#c000ff;
+  font-weight:bold;
+  margin-bottom:28px;
+}
+
+.modal-box label{
+  display:block;
+  color:#999;
+  font-size:13px;
+  margin-bottom:8px;
+}
+
+.modal-box input{
+  width:100%;
+  padding:16px;
+  border-radius:9px;
+  border:1px solid #33333d;
+  outline:none;
+  background:#07070b;
+  color:white;
+  margin-bottom:15px;
+}
+
+.modal-box input:focus{
+  border-color:#b000ff;
+  box-shadow:0 0 20px rgba(176,0,255,.12);
+}
+
+.pay-button{
+  width:100%;
+  padding:16px;
+  border:0;
+  border-radius:9px;
+  background:#b000ff;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.pay-button:hover{
+  box-shadow:0 0 30px rgba(176,0,255,.5);
+}
+
+.pay-button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.close-button{
+  width:100%;
+  padding:14px;
+  border:0;
+  background:transparent;
+  color:#888;
+  cursor:pointer;
+}
+
+.message{
+  display:none;
+  margin:18px 0;
+  padding:14px;
+  border-radius:9px;
+  background:rgba(176,0,255,.08);
+  color:#ddd;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.message.show{
+  display:block;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  nav{
+    padding:17px 5%;
+  }
+
+  .nav-links{
+    gap:12px;
+  }
+
+  .nav-links a{
+    font-size:9px;
+    letter-spacing:1px;
+  }
+
+  section{
+    padding:80px 5%;
+  }
+
+  .hero{
+    padding-left:5%;
+    padding-right:5%;
+  }
+
+  .hero h1{
+    letter-spacing:-5px;
+  }
+
+  .hero p{
+    font-size:16px;
+  }
+
+  .tickets,
+  .experience-grid{
+    grid-template-columns:1fr;
+  }
+
+  .ticket{
+    min-height:auto;
+  }
+
+  .about-box{
+    padding:25px;
+  }
+
+  .about-box p{
+    font-size:16px;
+  }
+
+  .modal-box{
+    padding:28px 22px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- NAVIGATION -->
+<!-- NAVIGATION -->
 
-  <nav>
-    <a href="#" class="logo">NOV<span>Y</span>X</a>
+<nav>
 
-    <ul class="nav-links">
-      <li><a href="#about">ABOUT</a></li>
-      <li><a href="#tickets">TICKETS</a></li>
-      <li><a href="#lineup">LINEUP</a></li>
-    </ul>
-  </nav>
+  <a href="#" class="logo">
+    NOV<span>Y</span>X
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#tickets">TICKETS</a></li>
+    <li><a href="#lineup">LINEUP</a></li>
+  </ul>
+
+</nav>
 
 
-  <!-- HERO -->
+<!-- HERO -->
 
-  <header class="hero">
+<header class="hero">
 
-    <div class="hero-content">
+  <div class="hero-glow"></div>
 
-      <div class="tag">THE NEXT EXPERIENCE</div>
+  <div class="hero-content">
 
-      <h1>NOVYX</h1>
+    <div class="tag">
+      THE NEXT EXPERIENCE
+    </div>
+
+    <h1>NOV<span>Y</span>X</h1>
+
+    <p>
+      An unforgettable live experience built for
+      music, culture, energy and the next generation.
+    </p>
+
+    <div class="buttons">
+
+      <a href="#tickets" class="btn primary">
+        GET TICKETS
+      </a>
+
+      <a href="#about" class="btn secondary">
+        DISCOVER NOVYX
+      </a>
+
+    </div>
+
+  </div>
+
+  <div class="scroll">
+    SCROLL ↓
+  </div>
+
+</header>
+
+
+<!-- ABOUT -->
+
+<section id="about" class="about">
+
+  <div class="section-heading">
+
+    <div class="tag">
+      ABOUT NOVYX
+    </div>
+
+    <h2>
+      MORE THAN<br>
+      AN EVENT.
+    </h2>
+
+  </div>
+
+  <div class="about-box">
+
+    <p>
+      NOVYX is a next-generation live experience where
+      music, culture, creativity and energy collide.
+      Come ready for unforgettable performances,
+      incredible people and an atmosphere you won't
+      want to leave.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- TICKETS -->
+
+<section id="tickets" class="tickets-section">
+
+  <div class="section-heading">
+
+    <div class="tag">
+      TICKETS
+    </div>
+
+    <h2>
+      CHOOSE YOUR<br>
+      EXPERIENCE.
+    </h2>
+
+    <p>
+      Select your ticket and pay securely using M-Pesa.
+    </p>
+
+  </div>
+
+
+  <div class="tickets">
+
+    <!-- EARLY BIRD -->
+
+    <div class="ticket">
+
+      <div class="ticket-label">
+        LIMITED
+      </div>
+
+      <h3>
+        Early Bird
+      </h3>
+
+      <div class="price">
+        KES 500
+      </div>
 
       <p>
-        An unforgettable live experience built for music,
-        culture, energy and the next generation.
+        Get in early and experience NOVYX
+        at our best entry price.
       </p>
 
-      <div class="buttons">
-
-        <a href="#tickets" class="btn btn-primary">
-          GET TICKETS
-        </a>
-
-        <a href="#about" class="btn btn-secondary">
-          DISCOVER NOVYX
-        </a>
-
-      </div>
-
-    </div>
-
-  </header>
-
-
-  <!-- ABOUT -->
-
-  <section id="about" class="about">
-
-    <div class="section-title">
-
-      <div class="tag">ABOUT NOVYX</div>
-
-      <h2>MORE THAN AN EVENT.</h2>
-
-      <p>
-        NOVYX is a live experience bringing together music,
-        culture, creativity and unforgettable energy.
-      </p>
-
-    </div>
-
-    <a href="#tickets" class="btn btn-primary">
-      GET YOUR TICKET
-    </a>
-
-  </section>
-
-
-  <!-- TICKETS -->
-
-  <section id="tickets">
-
-    <div class="section-title">
-
-      <div class="tag">TICKETS</div>
-
-      <h2>CHOOSE YOUR EXPERIENCE.</h2>
-
-      <p>
-        Select your ticket below and pay securely using M-Pesa.
-      </p>
-
-    </div>
-
-
-    <div class="tickets">
-
-      <!-- EARLY BIRD -->
-
-      <div class="ticket">
-
-        <h3>Early Bird</h3>
-
-        <div class="price">
-          KES 500
-        </div>
-
-        <p>
-          Get in early and experience NOVYX at the best price.
-        </p>
-
-        <button onclick="openPayment('Early Bird', 500)">
-          GET TICKET
-        </button>
-
-      </div>
-
-
-      <!-- REGULAR -->
-
-      <div class="ticket">
-
-        <h3>Regular</h3>
-
-        <div class="price">
-          KES 700
-        </div>
-
-        <p>
-          The standard NOVYX experience.
-        </p>
-
-        <button onclick="openPayment('Regular', 700)">
-          GET TICKET
-        </button>
-
-      </div>
-
-
-      <!-- VIP -->
-
-      <div class="ticket featured">
-
-        <div class="premium">
-          PREMIUM
-        </div>
-
-        <h3>VIP</h3>
-
-        <div class="price">
-          KES 1,500
-        </div>
-
-        <p>
-          Upgrade your experience with VIP access.
-        </p>
-
-        <button onclick="openPayment('VIP', 1500)">
-          GET VIP TICKET
-        </button>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- LINEUP -->
-
-  <section id="lineup" class="experience">
-
-    <div class="section-title">
-
-      <div class="tag">THE EXPERIENCE</div>
-
-      <h2>MUSIC. ENERGY. NOVYX.</h2>
-
-      <p>
-        More announcements coming soon.
-      </p>
-
-    </div>
-
-
-    <div class="experience-grid">
-
-      <div class="experience-card">
-        <h3>LIVE ACTS</h3>
-        <p>Coming soon.</p>
-      </div>
-
-      <div class="experience-card">
-        <h3>DJs</h3>
-        <p>Coming soon.</p>
-      </div>
-
-      <div class="experience-card">
-        <h3>SPECIAL GUESTS</h3>
-        <p>Coming soon.</p>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- INSTAGRAM -->
-
-  <section class="social">
-
-    <div class="tag">FOLLOW NOVYX</div>
-
-    <h2>STAY CONNECTED.</h2>
-
-    <a
-      class="instagram"
-      href="https://www.instagram.com/_._novyx_/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span class="instagram-icon"></span>
-      <span>@_._novyx_</span>
-    </a>
-
-  </section>
-
-
-  <!-- FOOTER -->
-
-  <footer>
-    © 2026 NOVYX. All rights reserved.
-  </footer>
-
-
-  <!-- PAYMENT MODAL -->
-
-  <div class="modal" id="paymentModal">
-
-    <div class="modal-box">
-
-      <h2>M-Pesa Payment</h2>
-
-      <div class="selected-ticket" id="selectedTicket">
-        Selected ticket
-      </div>
-
-      <label for="phone">
-        M-Pesa phone number
-      </label>
-
-      <input
-        id="phone"
-        type="tel"
-        inputmode="numeric"
-        placeholder="0712345678"
-        autocomplete="tel"
-      >
-
-      <button
-        class="pay-button"
-        id="payButton"
-        onclick="startPayment()"
-      >
-        PAY WITH M-PESA
+      <button onclick="openPayment('Early Bird',500)">
+        GET TICKET
       </button>
 
-      <div
-        class="message"
-        id="paymentMessage"
-      ></div>
+    </div>
 
-      <button
-        class="close-button"
-        onclick="closePayment()"
-      >
-        CANCEL
+
+    <!-- REGULAR -->
+
+    <div class="ticket">
+
+      <div class="ticket-label">
+        STANDARD
+      </div>
+
+      <h3>
+        Regular
+      </h3>
+
+      <div class="price">
+        KES 700
+      </div>
+
+      <p>
+        The standard NOVYX experience.
+        Music, energy and unforgettable moments.
+      </p>
+
+      <button onclick="openPayment('Regular',700)">
+        GET TICKET
+      </button>
+
+    </div>
+
+
+    <!-- VIP -->
+
+    <div class="ticket featured">
+
+      <div class="premium">
+        PREMIUM
+      </div>
+
+      <div class="ticket-label">
+        EXCLUSIVE
+      </div>
+
+      <h3>
+        VIP
+      </h3>
+
+      <div class="price">
+        KES 1,500
+      </div>
+
+      <p>
+        Upgrade your night with the premium
+        NOVYX experience.
+      </p>
+
+      <button onclick="openPayment('VIP',1500)">
+        GET VIP TICKET
       </button>
 
     </div>
 
   </div>
 
-
-  <script>
-
-    /*
-      IMPORTANT:
-      Replace this with the EXACT public Render URL
-      shown on your Render service.
-
-      Example:
-      https://novyx-mpesa-backend-xi90.onrender.com
-    */
-
-    const API_BASE_URL =
-      "https://novyx-mpesa-backend-xi90.onrender.com";
+</section>
 
 
-    let selectedTicket = "";
-    let selectedAmount = 0;
+<!-- LINEUP -->
+
+<section id="lineup" class="experience">
+
+  <div class="section-heading">
+
+    <div class="tag">
+      THE EXPERIENCE
+    </div>
+
+    <h2>
+      MUSIC.<br>
+      ENERGY.<br>
+      NOVYX.
+    </h2>
+
+    <p>
+      The lineup is coming soon.
+      Stay connected for announcements.
+    </p>
+
+  </div>
 
 
-    function openPayment(ticket, amount) {
+  <div class="experience-grid">
 
-      selectedTicket = ticket;
-      selectedAmount = amount;
+    <div class="experience-card">
 
-      document.getElementById("selectedTicket").textContent =
-        ticket + " — KES " + amount;
+      <div class="number">
+        01 / LIVE
+      </div>
 
-      document.getElementById("phone").value = "";
+      <h3>
+        LIVE ACTS
+      </h3>
 
-      const message =
-        document.getElementById("paymentMessage");
+      <p>
+        Artists and performers coming soon.
+      </p>
 
-      message.className = "message";
-      message.textContent = "";
-
-      document.getElementById("paymentModal").style.display =
-        "flex";
-    }
+    </div>
 
 
-    function closePayment() {
+    <div class="experience-card">
 
-      document.getElementById("paymentModal").style.display =
-        "none";
-    }
+      <div class="number">
+        02 / SOUND
+      </div>
 
+      <h3>
+        DJs
+      </h3>
 
-    function showMessage(text) {
+      <p>
+        Expect serious sounds all night.
+      </p>
 
-      const message =
-        document.getElementById("paymentMessage");
-
-      message.textContent = text;
-      message.className = "message show";
-    }
-
-
-    function normalizePhone(phone) {
-
-      phone = phone
-        .trim()
-        .replace(/\s+/g, "");
-
-      if (phone.startsWith("+254")) {
-        return phone.substring(1);
-      }
-
-      if (phone.startsWith("254")) {
-        return phone;
-      }
-
-      if (
-        phone.startsWith("07") ||
-        phone.startsWith("01")
-      ) {
-        return "254" + phone.substring(1);
-      }
-
-      if (
-        phone.startsWith("7") ||
-        phone.startsWith("1")
-      ) {
-        return "254" + phone;
-      }
-
-      return phone;
-    }
+    </div>
 
 
-    async function startPayment() {
+    <div class="experience-card">
 
-      const phoneInput =
-        document.getElementById("phone");
+      <div class="number">
+        03 / SPECIAL
+      </div>
 
-      const payButton =
-        document.getElementById("payButton");
+      <h3>
+        SPECIAL GUESTS
+      </h3>
 
-      const phone =
-        normalizePhone(phoneInput.value);
+      <p>
+        More surprises will be revealed.
+      </p>
 
+    </div>
 
-      if (!/^254[71]\d{8}$/.test(phone)) {
+  </div>
 
-        showMessage(
-          "Please enter a valid Kenyan M-Pesa number."
-        );
-
-        return;
-      }
+</section>
 
 
-      payButton.disabled = true;
-      payButton.textContent = "SENDING...";
+<!-- INSTAGRAM -->
 
-      showMessage(
-        "Sending M-Pesa payment request..."
+<section class="social">
+
+  <div class="tag">
+    FOLLOW NOVYX
+  </div>
+
+  <h2>
+    STAY CONNECTED.
+  </h2>
+
+  <a
+    class="instagram"
+    href="https://www.instagram.com/_.novyx_/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+
+    <span class="instagram-icon"></span>
+
+    <span>
+      @_.novyx_
+    </span>
+
+  </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+  © 2026 NOVYX — ALL RIGHTS RESERVED.
+</footer>
+
+
+<!-- PAYMENT MODAL -->
+
+<div class="modal" id="paymentModal">
+
+  <div class="modal-box">
+
+    <h2>
+      M-Pesa Payment
+    </h2>
+
+    <div
+      class="selected-ticket"
+      id="selectedTicket"
+    >
+      Selected ticket
+    </div>
+
+    <label for="phone">
+      M-Pesa phone number
+    </label>
+
+    <input
+      id="phone"
+      type="tel"
+      inputmode="numeric"
+      placeholder="0712345678"
+      autocomplete="tel"
+    >
+
+    <button
+      class="pay-button"
+      id="payButton"
+      onclick="startPayment()"
+    >
+      PAY WITH M-PESA
+    </button>
+
+    <div
+      class="message"
+      id="paymentMessage"
+    ></div>
+
+    <button
+      class="close-button"
+      onclick="closePayment()"
+    >
+      CANCEL
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/*
+================================================
+NOVYX M-PESA BACKEND
+================================================
+*/
+
+const API_BASE_URL =
+  "https://novyx-mpesa-backend-xi9o.onrender.com";
+
+
+let selectedTicket = "";
+let selectedAmount = 0;
+
+
+/*
+OPEN PAYMENT
+*/
+
+function openPayment(ticket, amount){
+
+  selectedTicket = ticket;
+  selectedAmount = amount;
+
+  document.getElementById(
+    "selectedTicket"
+  ).textContent =
+    ticket + " — KES " + amount;
+
+  document.getElementById(
+    "phone"
+  ).value = "";
+
+  const message =
+    document.getElementById(
+      "paymentMessage"
+    );
+
+  message.className = "message";
+  message.textContent = "";
+
+  document.getElementById(
+    "paymentModal"
+  ).style.display = "flex";
+
+}
+
+
+/*
+CLOSE PAYMENT
+*/
+
+function closePayment(){
+
+  document.getElementById(
+    "paymentModal"
+  ).style.display = "none";
+
+}
+
+
+/*
+PHONE NORMALIZATION
+*/
+
+function normalizePhone(phone){
+
+  phone =
+    phone
+      .trim()
+      .replace(/\s+/g,"");
+
+  if(phone.startsWith("+254")){
+    return phone.substring(1);
+  }
+
+  if(phone.startsWith("254")){
+    return phone;
+  }
+
+  if(
+    phone.startsWith("07") ||
+    phone.startsWith("01")
+  ){
+    return "254" + phone.substring(1);
+  }
+
+  if(
+    phone.startsWith("7") ||
+    phone.startsWith("1")
+  ){
+    return "254" + phone;
+  }
+
+  return phone;
+
+}
+
+
+/*
+MESSAGE
+*/
+
+function showMessage(text){
+
+  const message =
+    document.getElementById(
+      "paymentMessage"
+    );
+
+  message.textContent = text;
+  message.className =
+    "message show";
+
+}
+
+
+/*
+START PAYMENT
+*/
+
+async function startPayment(){
+
+  const phoneInput =
+    document.getElementById("phone");
+
+  const payButton =
+    document.getElementById("payButton");
+
+  const phone =
+    normalizePhone(
+      phoneInput.value
+    );
+
+
+  if(
+    !/^254[71]\d{8}$/.test(phone)
+  ){
+
+    showMessage(
+      "Please enter a valid Kenyan M-Pesa number."
+    );
+
+    return;
+
+  }
+
+
+  payButton.disabled = true;
+  payButton.textContent = "SENDING...";
+
+  showMessage(
+    "Connecting to M-Pesa..."
+  );
+
+
+  try{
+
+    const response =
+      await fetch(
+        API_BASE_URL +
+        "/api/stkpush",
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
+
+          body:JSON.stringify({
+
+            ticket:selectedTicket,
+
+            phone:phone
+
+          })
+
+        }
       );
 
 
-      try {
-
-        const response = await fetch(
-          API_BASE_URL + "/api/stkpush",
-          {
-            method: "POST",
-
-            headers: {
-              "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-              ticket: selectedTicket,
-              phone: phone
-            })
-          }
-        );
+    const data =
+      await response.json();
 
 
-        const data = await response.json();
+    if(
+      !response.ok ||
+      !data.success
+    ){
 
-
-        if (!response.ok || !data.success) {
-
-          throw new Error(
-            data.message ||
-            "Unable to start payment."
-          );
-        }
-
-
-        showMessage(
-          "✓ M-Pesa prompt sent. Check your phone and enter your M-Pesa PIN."
-        );
-
-
-        /*
-          Check payment status every 4 seconds.
-        */
-
-        if (data.checkoutRequestID) {
-
-          checkPaymentStatus(
-            data.checkoutRequestID
-          );
-
-        }
-
-      } catch (error) {
-
-        console.error(error);
-
-        showMessage(
-          "Payment failed: " +
-          error.message
-        );
-
-        payButton.disabled = false;
-        payButton.textContent =
-          "PAY WITH M-PESA";
-      }
+      throw new Error(
+        data.message ||
+        "Unable to start payment."
+      );
 
     }
 
 
-    async function checkPaymentStatus(
-      checkoutRequestID
-    ) {
-
-      let attempts = 0;
-
-      const maxAttempts = 30;
+    showMessage(
+      "✓ M-Pesa prompt sent! Check your phone and enter your M-Pesa PIN."
+    );
 
 
-      const interval =
-        setInterval(async () => {
+    if(
+      data.checkoutRequestID
+    ){
 
-          attempts++;
+      checkPaymentStatus(
+        data.checkoutRequestID
+      );
+
+    }
 
 
-          try {
+  }catch(error){
 
-            const response = await fetch(
+    console.error(error);
+
+    showMessage(
+      "Payment failed: " +
+      error.message
+    );
+
+    payButton.disabled = false;
+
+    payButton.textContent =
+      "PAY WITH M-PESA";
+
+  }
+
+}
+
+
+/*
+CHECK PAYMENT STATUS
+*/
+
+function checkPaymentStatus(
+  checkoutRequestID
+){
+
+  let attempts = 0;
+
+  const maxAttempts = 30;
+
+
+  const interval =
+    setInterval(
+      async function(){
+
+        attempts++;
+
+
+        try{
+
+          const response =
+            await fetch(
               API_BASE_URL +
               "/api/payment-status/" +
               encodeURIComponent(
@@ -996,101 +1340,116 @@
             );
 
 
-            const data =
-              await response.json();
+          const data =
+            await response.json();
 
 
-            if (data.status === "success") {
+          if(
+            data.status === "success"
+          ){
 
-              clearInterval(interval);
+            clearInterval(interval);
 
-              showMessage(
-                "✓ Payment successful! Your NOVYX ticket payment has been received."
-              );
-
-              document.getElementById(
-                "payButton"
-              ).textContent =
-                "PAYMENT COMPLETE";
-
-              return;
-            }
-
-
-            if (data.status === "failed") {
-
-              clearInterval(interval);
-
-              showMessage(
-                "Payment was not completed. Please try again."
-              );
-
-              document.getElementById(
-                "payButton"
-              ).disabled = false;
-
-              document.getElementById(
-                "payButton"
-              ).textContent =
-                "PAY WITH M-PESA";
-
-              return;
-            }
-
-
-            if (attempts >= maxAttempts) {
-
-              clearInterval(interval);
-
-              showMessage(
-                "Payment is still being processed. If you completed the M-Pesa payment, please wait for confirmation."
-              );
-
-              document.getElementById(
-                "payButton"
-              ).disabled = false;
-
-              document.getElementById(
-                "payButton"
-              ).textContent =
-                "PAY WITH M-PESA";
-            }
-
-
-          } catch (error) {
-
-            console.error(
-              "Status check error:",
-              error
+            showMessage(
+              "✓ PAYMENT SUCCESSFUL! Your NOVYX ticket payment has been received."
             );
 
+            document.getElementById(
+              "payButton"
+            ).textContent =
+              "PAYMENT COMPLETE";
+
+            return;
+
           }
 
-        }, 4000);
 
-    }
+          if(
+            data.status === "failed"
+          ){
 
+            clearInterval(interval);
 
-    /*
-      Close modal when clicking outside it.
-    */
+            showMessage(
+              "Payment was not completed. Please try again."
+            );
 
-    document
-      .getElementById("paymentModal")
-      .addEventListener(
-        "click",
-        function(event) {
+            const button =
+              document.getElementById(
+                "payButton"
+              );
 
-          if (
-            event.target === this
-          ) {
-            closePayment();
+            button.disabled = false;
+
+            button.textContent =
+              "PAY WITH M-PESA";
+
+            return;
+
           }
+
+
+          if(
+            attempts >= maxAttempts
+          ){
+
+            clearInterval(interval);
+
+            showMessage(
+              "Payment is still processing. If you completed the payment, please wait for confirmation."
+            );
+
+            const button =
+              document.getElementById(
+                "payButton"
+              );
+
+            button.disabled = false;
+
+            button.textContent =
+              "PAY WITH M-PESA";
+
+          }
+
+
+        }catch(error){
+
+          console.error(
+            "Status error:",
+            error
+          );
 
         }
-      );
 
-  </script>
+      },
+      4000
+    );
+
+}
+
+
+/*
+CLOSE WHEN CLICKING OUTSIDE
+*/
+
+document
+  .getElementById("paymentModal")
+  .addEventListener(
+    "click",
+    function(event){
+
+      if(
+        event.target === this
+      ){
+
+        closePayment();
+
+      }
+
+    }
+  );
+
+</script>
 
 </body>
 </html>
